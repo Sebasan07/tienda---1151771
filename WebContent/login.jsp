@@ -21,14 +21,14 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Bienvenido</h3>
-              <form>
+             <form action="${pageContext.request.contextPath}/TiendaServlet?action=login" method="post">
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
                   <label for="inputEmail">Email</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="pass" required>
                   <label for="inputPassword">Password</label>
                 </div>
 
@@ -39,6 +39,14 @@
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Ingresar</button>
 
               </form>
+              <% 
+            if(request.getAttribute("mensaje")!=null) 
+            { 
+        %>          
+                <script>alert( ""+<%=request.getAttribute("mensaje")%>)</script>
+        <%
+            }
+                %>
             </div>
           </div>
         </div>

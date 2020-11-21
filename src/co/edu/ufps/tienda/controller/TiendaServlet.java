@@ -68,9 +68,11 @@ public class TiendaServlet extends HttpServlet {
 			case "editar":
 				update(request, response);
 				break;
+			case "login":
+				login(request, response);
+				break;
 
 			default:
-				System.out.println("c");
 				list(request, response);
 				break;
 			}
@@ -160,10 +162,36 @@ public class TiendaServlet extends HttpServlet {
 
 	private void delete(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		String codigo = request.getParameter("codigo");
-		Tienda tienda = tiendaDAO.find(codigo);
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Tienda tienda = tiendaDAO.find(id);
+		
 		tiendaDAO.delete(tienda);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("EmpleadoServlet?action=mostrar");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("TiendaServlet?action=mostrar");
+		dispatcher.forward(request, response);
+	}
+	
+	private void login(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+		List<Tienda> list = tiendaDAO.list();
+
+		RequestDispatcher dispatcher = null;
+		String email = request.getParameter("email");
+		String pass = request.getParameter("pass");
+		boolean existe = false;
+		for (Tienda t : list) {
+			if (t.getEmail().equals(email) && t.getClave().equals(pass)) {
+				existe = true;
+			}
+		}
+
+		if(existe) {
+		dispatcher = request.getRequestDispatcher("servicios.jsp");
+		}else {
+			dispatcher = request.getRequestDispatcher("login.jsp");
+			String mensaje="No está registrado";
+			request.setAttribute("mensaje", mensaje);
+		}
 		dispatcher.forward(request, response);
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +28,16 @@
             	<a href="registro.jsp" class="btn btn-lg btn-primary btn-block text-uppercase font-weight-bold mb-2 text-light" type="submit">Registrate</a>
             </div>
         </div>
-<
+
+<div class="container text-left">
+
+				 <a
+					href="<%=request.getContextPath()%>/TiendaServlet?action=mostrar"
+					class="btn btn-success">Mostrar tiendas</a>
+			</div>
         <div class="row">
             <!-- Team member -->
+            <c:forEach var="tienda" items="${list}">
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="image-flip" >
                     <div class="mainflip flip-0">
@@ -72,6 +80,8 @@
                     </div>
                 </div>
             </div>
+            </c:forEach>
+            
         </div>
     </div>
 </section>
