@@ -46,7 +46,7 @@ public class Tienda implements Serializable{
 	
 	private String descripcion;
 	
-	@Column(length = 100)
+	@Column(length = 100, unique=true)
 	private String email;
 	
 	@Column(length = 100)
