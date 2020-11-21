@@ -8,4 +8,5 @@ public class TiendaDAO extends Conexion<Tienda> implements GenericDao<Tienda>{
 	public TiendaDAO(){
 		super(Tienda.class);
 	}
+	
 }
