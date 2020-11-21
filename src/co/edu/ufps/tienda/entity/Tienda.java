@@ -1,5 +1,6 @@
 package co.edu.ufps.tienda.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "tienda")
 @NamedQuery(name = "Tienda.findAll", query = "SELECT u FROM Tienda u")
 
-public class Tienda {
+public class Tienda implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8979099477371285512L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
